@@ -25,15 +25,22 @@ public class FBInsights {
 		// >>>Fill here<<< 
 		String uri = 
 				"https://graph.facebook.com/v2.5"
-				+ "/search?"  // 補完
-				+ "&access_token=";  
-
+				+ "/search?q=%E9%9D%A0%E5%8C%97&type=page&limit=1000&fields=id,name,likes,talking_about_count"  // 補完
+				+ "&access_token=CAAWKlrSqgqsBALhWK7CCCmVcECMukBCZCqP0csQOoH1m9dmx2bHLjzgjRRMJgTN3vLqodKjPgwX7FR5zy"
+				+ "MMbQZCKXpSE69bT7u2NbHFI7bbJ6YUv9uxNg2usygfN1ujBISZB75xRguBWtF9v4WwsQZBNGq5Kvx48UFGvfZAsriQ72JjL6vk8PlhmQS5lID7IZD";  
+		
 		// Jsoup select 後回傳的是  Elements 物件
 		Elements elems =
 				CrawlerPack.start()
 				.getFromJson(uri)
 				.select("data");
-		
+		/* "data": [
+		          {
+		            "id": "611695668927468",
+		            "name": "靠北淡江",
+		            "likes": 15913,
+		            "talking_about_count": 5129
+		          },*/
 		String output = "id,按讚數,名稱,討論人數\n";
 		
 		// 遂筆處理
@@ -41,10 +48,10 @@ public class FBInsights {
 			
 			// 如何取出資料??
 			// >>>Fill here<<< 
-			String id =  data.select("").text();
-			String likes = data.select("").text();
-			String name = data.select("").text();
-			String talking_about_count = data.select("").text();
+			String id =  data.select("id").text();
+			String likes = data.select("likes").text();
+			String name = data.select("name").text();
+			String talking_about_count = data.select("talking_about_count").text();
 			
 			output += id+","+likes+",\""+name+"\","+talking_about_count+"\n";
 		}

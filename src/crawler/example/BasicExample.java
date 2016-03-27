@@ -13,7 +13,7 @@ public class BasicExample {
 	public static void main(String[] args) {
 		
 		// 遠端資料路徑
-		String uri = "http://.../";
+		String uri = "http://www.104.com.tw/i/apis/jobsearch.cfm?kwop=1&sltp=S&slmin=40000&fmt=8&kws=java&cols=J,JOB,NAME";
 
 		System.out.println(
 				CrawlerPack.start()
@@ -28,7 +28,7 @@ public class BasicExample {
 			    //.getFromXml(uri)
 			    
 			    // 這兒開始是 Jsoup Document 物件操作
-			    .select(".css .selector ")
+			   // .select(".css .selector ")
 			    
 		);
 	}

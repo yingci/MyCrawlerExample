@@ -21,9 +21,10 @@ public class PttHomework {
 			CrawlerPack.start()
 			    .addCookie("over18", "1")
 				.getFromHtml(uri)
-				.select("") // 如何取得按推的id ? >>>Fill here<<< 
+				.select("span:containsOwn(推) + span:eq(1)")// 如何取得按推的id ? >>>Fill here<<<
+				.text()  
 
-				.toString()
+				//.toString()
 		);
 	}
 }

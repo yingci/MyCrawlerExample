@@ -35,7 +35,7 @@ class PttBoard {
     	// >>>Fill here<<< 
         String prevPage =
             CrawlerPack.start()
-                .addCookie("","")                		// 八卦版進入需要設定cookie
+                .addCookie("over18","1")                		// 八卦版進入需要設定cookie
                 .getFromHtml(pttMainPage)            	// 遠端資料格式為 HTML
                 .select("")  							// 取得右上角『前一頁』的內容
                 .get(1).attr("href")
@@ -84,13 +84,13 @@ class PttBoard {
     	// 取得 Jsoup 物件，稍後要做多次 select
         Document feed = 
         	CrawlerPack.start()
-		        .addCookie("","")  // 八卦版進入需要設定cookie >>>Fill here<<< 
-		        .getFromHtml("https://www.ptt.cc"+url);      
+		        .addCookie("over18","1")  // 八卦版進入需要設定cookie >>>Fill here<<< 
+		        .getFromHtml("https://www.ptt.cc/"+url);      
         
         
         // 1. 文章作者 
         // >>>Fill here<<< 
-        String feedAuthor = feed.select("").text();
+        String feedAuthor = feed.select(".article-meta-value").text();
         
         // 2. 文章標題 
         // >>>Fill here<<< 

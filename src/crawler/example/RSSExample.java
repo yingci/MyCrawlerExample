@@ -15,12 +15,13 @@ public class RSSExample {
 		
 		// 遠端資料路徑
 		// >>>Fill here<<< 
-		String uri = "";
+		String uri = "http://www.appledaily.com.tw/rss/newcreate/kind/rnews/type/107";
 
 		System.out.println(
 				CrawlerPack.start()
 				    .getFromXml(uri)
 				    .select("item title")
+				    
 		);
 	}
 }
