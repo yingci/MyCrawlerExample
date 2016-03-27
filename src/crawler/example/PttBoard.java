@@ -54,7 +54,7 @@ class PttBoard {
             
             Elements links =
                 CrawlerPack.start()
-                    .addCookie("", "")		// 八卦版進入需要設定cookie >>>Fill here<<< 
+                    .addCookie("over18", "1")		// 八卦版進入需要設定cookie >>>Fill here<<< 
                     .getFromHtml(currPage)
                     .select("");			// 取得文章的<a> tag >>>Fill here<<< 
 

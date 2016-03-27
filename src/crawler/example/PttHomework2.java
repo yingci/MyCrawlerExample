@@ -22,13 +22,13 @@ public class PttHomework2 {
 			    .addCookie("over18", "1")
 				.getFromHtml(uri)
 				//.select("span.f3.push-userid ")// 如何取得按推的id ? >>>Fill here<<< 
-				.select("span:containsOwn(作者)>span")//發文者
-				.select("span.article-meta-value")//文章標題
-				.select("span.article-meta-value")//按推總數
-				.select("span.article-meta-value")//不重複推文數
-				.select("span.article-meta-value")//按噓總數
-				.select("span.article-meta-value")//不重複噓文數
-				.select("span.article-meta-value")//不重複噓文數
+				.select("div:contains(作者)")//發文者
+				//.select("span.article-meta-value")//文章標題
+				//.select("span.article-meta-value")//按推總數
+				//.select("span.article-meta-value")//不重複推文數
+				//.select("span.article-meta-value")//按噓總數
+				//.select("span.article-meta-value")//不重複噓文數
+				//.select("span.article-meta-value")//不重複噓文數
 				.toString()
 				
 		);

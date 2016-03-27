@@ -1,5 +1,6 @@
 package crawler.example;
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -31,17 +32,17 @@ import com.mongodb.MongoClient;
  * @author Abola Lee
  *
  */
-public class YahooStock {
+public class YahooStock0 {
 
 	static Logger log = LoggerFactory.getLogger(YahooStock0.class);
 	// >>>Fill here<<< 
-	final static String mongodbServer = "128.199.204.20"; // your host name
-	final static String mongodbDB = "stock";		// your db name
+	final static String mongodbServer = ""; // your host name
+	final static String mongodbDB = "";		// your db name
 	
 	static String stockNumber;
 	
 	// 每次取得最後50筆交易的內容
-	static String uri_format = "https://tw.stock.yahoo.com/q/ts?s=%s&t=50";
+	static String uri_format = "https://tw.stock.yahoo.com/q/ts?s=2330&t=50";
 	
 	public static void main(String[] args) {
 		
@@ -80,9 +81,8 @@ public class YahooStock {
 				// 目標含有  成 交 明 細  的table
 				// <td align="center" width="240">2330 台積電 成 交 明 細</td>
 				// >>>Fill here<<
-				.select("table:matches(成 交 明 細)") ;
-		//.select("");
-			//System.out.println(transDetail);
+				.select("") ;
+
 		// 分解明細資料表格
 		List<DBObject> parsedTransDetail = parseTransDetail(transDetail);
 		
@@ -102,15 +102,12 @@ public class YahooStock {
 		
 		// 將以下分解出資料日期中的 105/03/25
 		// <td width="180">資料日期：105/03/25</td>
-		// day 要是 105/03/25 如何get
-		String day = transDetail
-				.select("td:matchesOwn(資料日期)")
-				.text().substring(5,14);
-		//System.out.println(day);
+		// >>>Fill here<<< 
+		String day = "";  // day 要是 105/03/25 如何寫
 		
 		// 取出 header 以外的所有交易資料
 		// >>>Fill here<<< 
-		for(Element detail: transDetail.select("td>table>tbody>tr:gt(1)") ){
+		for(Element detail: transDetail.select("") ){
 			
 			Map<String, String> data = new HashMap<>();
 			
@@ -134,10 +131,8 @@ public class YahooStock {
 			data.put("volume", detail.select("td:eq(5)").text());
 			
 			result.add( new BasicDBObject(data) );
-			//System.out.println(data);
 		}
 		return result;
-		
 	} 
 	
 	/**
@@ -152,11 +147,7 @@ public class YahooStock {
 			
 			// 如何將資料寫回 mongodb ?
 			// >>>Fill here<<< 
-			mongoClient = new MongoClient( mongodbServer );
-
-			DB db = mongoClient.getDB( mongodbDB );
 			
-			db.getCollection("yingci").insert(parsedTransDetail);
 		} catch (Exception e) {
 			log.warn(e.getMessage());
 		}
