@@ -7,14 +7,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 範例: 使用爬蟲包取得八卦版最後50篇文章的網址
+ * 範例: 使用爬蟲包取得八卦版最後50篇文章的網址   !finish!
  */
 class PttGossiping {
 
-    final static String gossipMainPage = "https://www.ptt.cc/bbs/Gossiping/index.html";
-    final static String gossipIndexPage = "https://www.ptt.cc/bbs/Gossiping/index%s.html";
+    final static String gossipMainPage = "hhttp://www.cpbl.com.tw/web/team_playergrade.php?&gameno=01&team=A02&year=2015&grade=3&syear=2015";
+    final static String gossipIndexPage = "http://www.cpbl.com.tw/players/person.html?player_id=%s&teamno=A02";
     // 取得最後幾篇的文章數量
-    static Integer loadLastPosts = 50;
+    static Integer loadLastPosts = 85;
 
     public static void main(String[] argv){
 
@@ -24,10 +24,11 @@ class PttGossiping {
                 .getFromHtml(gossipMainPage)            // 遠端資料格式為 HTML
                 .select(".action-bar .pull-right > a")  // 取得右上角『前一頁』的內容
                 .get(1).attr("href")
-                .replaceAll("/bbs/Gossiping/index([0-9]+).html", "$1");
+                .replaceAll("([A-Z0-9]+)", "$1");
+       
         // 目前最末頁 index 編號
         Integer lastPage = Integer.valueOf(prevPage)+1;
-
+ 
         List<String> lastPostsLink = new ArrayList<String>();
 
         while ( loadLastPosts > lastPostsLink.size() ){
@@ -40,9 +41,10 @@ class PttGossiping {
                     .select(".title > a");
 
             for( Element link: links) lastPostsLink.add( link.attr("href") );
+           
         }
-
-        // 檢視結果
+// System.out.println(lastPostsLink);
+      //   檢視結果
         for(String url : lastPostsLink){
             System.out.println("https://www.ptt.cc"+url);
         }

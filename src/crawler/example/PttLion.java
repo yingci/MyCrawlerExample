@@ -11,10 +11,10 @@ import java.util.List;
  */
 class PttLion {
 
-    final static String LionMainPage = "https://www.ptt.cc/bbs/Lions/index.html";
-    final static String LionIndexPage = "https://www.ptt.cc/bbs/Lions/index%s.html";
-    // 取得最後幾篇的文章數量
-    static Integer loadLastPosts = 50;
+//    final static String LionMainPage = "https://www.ptt.cc/bbs/Lions/index.html";
+//    final static String LionIndexPage = "https://www.ptt.cc/bbs/Lions/index%s.html";
+//    // 取得最後幾篇的文章數量
+//    static Integer loadLastPosts = 50;
 
     public static void main(String[] argv){
 
@@ -58,23 +58,35 @@ class PttLion {
         
        */
       String url2 = "https://www.ptt.cc/bbs/Lions/M.1458829865.A.AFF.html";
+      //ptt取標題
       String title2 =
         CrawlerPack.start()
             .getFromHtml(url2)
             .select("span:containsOwn(標題) + span:eq(1)").text();
+    //ptt取時間
       String title3 =
     	CrawlerPack.start()
     	    .getFromHtml(url2)
       		.select("span:containsOwn(時間) + span:eq(1)").text();
+    //ptt取推文
       String title4 =
     	CrawlerPack.start()
     	    .getFromHtml(url2)
     	    .select(".f3.push-content").text();
-      String title5 =
-    	    	CrawlerPack.start()
-    	    	    .getFromHtml(url2)
-    	    	    .select(".f3.push-content").text();
-        System.out.println(title2+"\n"+title3+"\n"+title4+"\n"+title5);
+    //ptt取內文
+      Elements elems =
+				CrawlerPack.start()
+			    .addCookie("over18", "1")
+				.getFromHtml(url2)
+				.select("#main-content") ;
+			
+			for( Element elem: elems.select("span,div") ){
+				elem.remove();
+			}
+			
+			
+	
+        System.out.println(title2+"\n"+title3+"\n"+elems.text()+"\n"+title4);
         
     }
 }

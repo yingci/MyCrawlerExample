@@ -11,7 +11,7 @@ import com.github.abola.crawler.CrawlerPack;
  * @author Abola Lee
  *
  */
-public class Stock2330 {
+public class Stock2330_2 {
 	
 	public static void main(String[] args) {
 		// 2330 

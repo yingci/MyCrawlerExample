@@ -1,5 +1,5 @@
 package crawler.example;
-
+//ptt取內文
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
@@ -9,7 +9,7 @@ public class PttReply {
 
 	public static void main(String[] args) {
 		
-		String uri = "https://www.ptt.cc/bbs/Gossiping/M.1459053918.A.5F0.html";
+		String uri = "https://www.ptt.cc/bbs/Lions/M.1458829865.A.AFF.html";
 
 		Elements elems =
 				CrawlerPack.start()

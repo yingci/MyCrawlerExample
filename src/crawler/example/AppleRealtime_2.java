@@ -22,7 +22,7 @@ import com.google.common.primitives.Ints;
  * @author Abola Lee
  *
  */
-public class AppleRealtime {
+public class AppleRealtime_2 {
 	
 	static SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHH:mm");
 	
